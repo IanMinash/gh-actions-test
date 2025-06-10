@@ -9,6 +9,9 @@ on:
 jobs:
     build_test:
         runs-on: ubuntu-latest
+        defaults:
+            run:
+                working-directory: ./python
 
         steps: 
             - name: Checkout code
