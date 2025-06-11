@@ -5,7 +5,7 @@ on:
     branches:
       - main
       - develop
-      - feature/Edward_linting
+      - feature/*
     paths:
       - 'javascript/**'
 
