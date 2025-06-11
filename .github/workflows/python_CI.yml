@@ -2,8 +2,12 @@ name: Python CI-test
 
 on:     #what will trigger the CI 
     push:
+        paths:
+          - 'python/**'   #only triggered when the folder is accessed or change
         branches: [main, develop,feature/*]
     pull_request:
+        paths:
+          - 'python/**' 
         branches: [main,develop]
 
 jobs:
