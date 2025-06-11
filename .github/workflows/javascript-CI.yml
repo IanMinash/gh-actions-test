@@ -2,7 +2,7 @@ name: Javascript CI test
 
 on:     
     push:
-        branches: [main, develop,feature/*]
+        branches: [main, develop,feature/Edward_linting]
         paths:
           - 'javascript/**' 
 
