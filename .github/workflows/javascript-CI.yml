@@ -2,14 +2,14 @@ name: Javascript CI test
 
 on:     
     push:
+        branches: [main, develop,feature/*]
         paths:
           - 'javascript/**' 
-        branches: [main, develop,feature/*]
 
     pull_request:
+        branches: [main,develop]
         paths:
           - 'javascript/**' 
-        branches: [main,develop]
 
 jobs:
     build_test:
