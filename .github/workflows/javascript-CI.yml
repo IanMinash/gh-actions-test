@@ -22,7 +22,7 @@ jobs:
         steps:
             - name: checkout code
               uses: actions/checkout@v4
-              
+
             - name: setup node
               uses: actions/setup-node@v4
               with: 
@@ -33,4 +33,7 @@ jobs:
             
             - name: build Typescript
               run: npm run build
+
+            - name: List dist files
+              run: ls dist/
 
