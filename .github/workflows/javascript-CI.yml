@@ -1,0 +1,29 @@
+name: Javascript CI test
+
+on:     
+    push:
+        branches: [main, develop,feature/*]
+    pull_request:
+        branches: [main,develop]
+
+jobs:
+    build_test:
+        runs-on: ubuntu latest
+        defaults:
+            run:
+                working-directory: ./javascript
+        
+        steps:
+            - name: checkout code
+              uses: actions/checkout@v4
+            - name: setup node
+              uses: actions/setup-node@v4
+              with: 
+                node-version: lts/*
+            
+            - name: install dependencies
+              run: npm install
+            
+            - name: build Typescript
+              run: npm run build
+
