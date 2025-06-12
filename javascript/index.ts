@@ -1,25 +1,25 @@
 // Define an interface for structured data
 interface Person {
-    name: string;
-    age: number;
+  name: string;
+  age: number;
 }
 
 // Function with type annotations
 export function greet(person: Person): string {
-    return `Hello, ${person.name}! You are ${person.age} years old.`;
+  return `Hello, ${person.name}! You are ${person.age} years old.`;
 }
 
 // Class definition (demonstrates object-oriented features)
 export class Greeter {
-    private message: string;
+  private message: string;
 
-    constructor(message: string) {
-        this.message = message;
-    }
+  constructor(message: string) {
+    this.message = message;
+  }
 
-    public sayHello(target: string): string {
-        return `${this.message}, ${target}!`;
-    }
+  public sayHello(target: string): string {
+    return `${this.message}, ${target}!`;
+  }
 }
 
 // Usage of the function and class
@@ -31,6 +31,6 @@ console.log(myGreeter.sayHello("TypeScript World"));
 
 // Demonstrate a simple mathematical operation
 export function add(a: number, b: number): number {
-    return a + b;
+  return a + b;
 }
-console.log(`5 + 7 = ${add(5, 7)}`);
+console.log(`10 + 7 = ${add(10, 7)}`);
