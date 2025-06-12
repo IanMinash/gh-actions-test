@@ -40,14 +40,13 @@ jobs:
             - name: Install dependencies
               run: npm install
 
+            - name: Install Eslint
+              run: npm install eslint
+
             - name: Run Eslint 
               run: npm run lint
 
-            - name: Run linters
-              uses: wearerequired/lint-action@v2
-              with:
-                eslint: true
-                prettier: true
+            
 
             - name: Run tests
               run: npm run test
