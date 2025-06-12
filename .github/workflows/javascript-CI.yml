@@ -20,9 +20,6 @@ jobs:
   build_test:
     runs-on: ubuntu-latest
 
-    defaults:
-      run:
-        working-directory: ./javascript
 
     steps:
       - name: Checkout code
@@ -40,4 +37,4 @@ jobs:
         run: npm run build
 
       - name: List dist files
-        run: ls -la dist/
+        run: cd javascript && ls -la dist/
