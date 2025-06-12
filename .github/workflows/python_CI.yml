@@ -2,7 +2,7 @@ name: Python CI-test
 
 on:     #what will trigger the CI 
     push:
-        branches: [main, develop,feature/Edward_linting]
+        branches: [main, develop,feature/*]
         paths:
           - 'python/**'   #only triggered when the folder is accessed or change
 
