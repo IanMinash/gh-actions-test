@@ -1,4 +1,4 @@
-name: Javascript CI test
+name: Javascript1 CI test
 
 on:
   push:
