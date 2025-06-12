@@ -20,6 +20,10 @@ on:
 jobs:
   build_test:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: ["lts/*", "16", "18", "20"]
+
     defaults:
       run:
         working-directory: ./javascript
@@ -28,10 +32,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup Node
+      - name: Setup Node ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
-          node-version: lts/*
+          node-version: ${{ matrix.node-version }}
 
       - name: Cache node_modules
         uses: actions/cache@v4
