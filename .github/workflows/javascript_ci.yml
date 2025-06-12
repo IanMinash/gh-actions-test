@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: ["lts/*", "16", "18", "20"]
+        node-version: ["lts/*", "18", "20"]
 
     defaults:
       run:
@@ -47,7 +47,7 @@ jobs:
             ${{ runner.os }}-
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       - name: Run eslint
         run: npm run lint
