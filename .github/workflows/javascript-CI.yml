@@ -10,7 +10,7 @@ on:
       - 'javascript/**'
 
   pull_request:
-    branches:
+    branches:  
       - main
       - develop
     paths:
