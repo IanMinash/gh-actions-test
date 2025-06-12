@@ -21,3 +21,9 @@ jobs:
               uses: actions/setup-python@v5
               with:
                 python-version: "3.13"
+
+            - name: Run linters
+              uses: wearerequired/lint-action@v2
+              with:
+                black: true
+                flake8: true
