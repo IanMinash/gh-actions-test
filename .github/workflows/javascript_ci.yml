@@ -5,11 +5,14 @@ on:
         branches:
             - main
             - develop
-            - feature/*        
+            - feature/* 
+        paths: ["javascript/**"]
+
     pull_request:
         branches:
             - main
             - develop
+        paths: ["javascript/**"]
 
 
 jobs:
