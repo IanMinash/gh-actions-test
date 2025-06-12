@@ -8,12 +8,14 @@ on:
       - feature/*
     paths:
       - "javascript/**"
+      - .github/workflows/javascript-ci.yml
   pull_request:
     branches:
       - main
       - develop
     paths:
       - "javascript/**"
+      - .github/workflows/javascript-ci.yml
 
 jobs:
   build_test:
@@ -45,3 +47,8 @@ jobs:
 
       - name: List dist files
         run: ls dist/
+
+      - name: Check secret
+        run: echo "$my_secret"
+        env:
+          my_secret: ${{ secrets.VM_PASSWORD }}
