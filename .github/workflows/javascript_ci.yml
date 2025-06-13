@@ -1,58 +1,72 @@
 name: JavaScript CI
 
 on:
-    push:
-        branches:
-            - main
-            - develop
-            - feature/* 
-        paths:
-            - "javascript/**"
-            - .github/workflows/javascript_ci.yml
-
-    pull_request:
-        branches:
-            - main
-            - develop
-        paths:
-            - "javascript/**"
-            - .github/workflows/javascript_ci.yml
-
-
+  push:
+    branches:
+      - main
+      - develop
+      - feature/*
+    paths:
+      - "javascript/**"
+      - .github/workflows/javascript_ci.yml
+  pull_request:
+    branches:
+      - main
+      - develop
+    paths:
+      - "javascript/**"
+      - .github/workflows/javascript_ci.yml
 
 jobs:
-    build_test:
-        runs-on: ubuntu-latest
-        defaults:
-            run:
-                working-directory: ./javascript
+  build_test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: ["lts/*", "18", "20"]
 
-        steps: 
-            - name: Checkout code
-              uses: actions/checkout@v4
-              
-            - name: Setup Node
-              uses: actions/setup-node@v4
-              with:
-                node-version: lts/*
+    defaults:
+      run:
+        working-directory: ./javascript
 
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-            - name: Install dependencies
-              run: npm install
+      - name: Setup Node ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
 
-            - name: Install Eslint
-              run: npm install eslint
+      - name: Cache node_modules
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-${{ matrix.node-version }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-${{ matrix.node-version }}-
+            ${{ runner.os }}-
 
-            - name: Run Eslint 
-              run: npm run lint
+      - name: Install dependencies
+        run: npm ci
 
-            
+      - name: Run eslint
+        run: npm run lint
 
-            - name: Run tests
-              run: npm run test
+      - name: Run tests
+        run: npm run test
 
-            - name: Build TypeScript
-              run: npm run build
+      - name: Build TypeScript
+        run: npm run build
 
-            - name: List dist files
-              run: ls dist/
+      - name: List dist files
+        run: ls dist/
+
+      - name: Check my secret
+        run: echo "$my_secret"
+        env:
+          my_secret: ${{ secrets.VM_PASSWORD }}
+
+      - name: Check my variable
+        run: echo "$my_var"
+        env:
+          my_var: ${{ vars.VM_NAME }}
