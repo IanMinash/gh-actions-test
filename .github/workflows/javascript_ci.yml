@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: ["lts/*", "18", "20"]
+        node-version: ["lts/*", "18"]
 
     defaults:
       run:
