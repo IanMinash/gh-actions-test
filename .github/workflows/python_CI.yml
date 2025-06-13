@@ -1,0 +1,31 @@
+name: Python CI-test
+
+on:     #what will trigger the CI 
+    push:
+        branches: [main, develop,feature/*]
+        paths:
+          - 'python/**'   #only triggered when the folder is accessed or change
+
+    pull_request:
+        branches: [main,develop]
+        paths:
+          - 'python/**' 
+
+jobs:
+    build_test:
+        runs-on: ubuntu-latest
+
+        steps: 
+            - name: checkout code
+              uses: actions/checkout@v4
+            
+            - name: setup python
+              uses: actions/setup-python@v5
+              with:
+                python-version: "3.13"
+            
+            - name: install dependencies
+              run: cd python && pip install -r requirements.txt   #where file is located
+
+            - name: Run tests
+              run: cd python && PYTHONPATH=. pytest tests/

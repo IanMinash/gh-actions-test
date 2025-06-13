@@ -1,0 +1,40 @@
+name: Javascript1 CI test
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+      - feature/Edward_linting
+    paths:
+      - 'javascript/**'
+
+  pull_request:
+    branches:  
+      - main
+      - develop
+    paths:
+      - 'javascript/**'
+
+jobs:
+  build_test:
+    runs-on: ubuntu-latest
+
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build TypeScript
+        run: npm run build
+
+      - name: List dist files
+        run: cd javascript && ls -la dist/
