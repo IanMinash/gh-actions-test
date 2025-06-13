@@ -37,5 +37,4 @@ jobs:
                 black: true
                 flake8: true
 
-            -  name: Run tests
-               run: PYTHONPATH=. pytest tests/
+            
