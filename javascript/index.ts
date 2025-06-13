@@ -33,4 +33,4 @@ console.log(myGreeter.sayHello("TypeScript World"));
 export function add(a: number, b: number): number {
     return a + b;
 }
-console.log(`6 + 7 = ${add(6, 7)}`);
+console.log(`5 + 7 = ${add(5, 7)}`);
