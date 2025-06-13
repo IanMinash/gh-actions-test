@@ -3,10 +3,14 @@ name: Python CI
 on:
     push:
         branches: [main, develop, feature/*]
-        paths: ["python/**"]
+        paths:
+          - "python/**"
+          -  .github/workflows/python_ci.yml
     pull_request:
         branches: [main, develop]
-        paths: ["python/**"]
+        paths:
+          - "python/**"
+          -  .github/workflows/python_ci.yml
 
 jobs:
     build_test:
@@ -33,4 +37,5 @@ jobs:
                 black: true
                 flake8: true
 
-            
+            -  name: Run tests
+               run: PYTHONPATH=. pytest tests/
