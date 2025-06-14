@@ -1,5 +1,5 @@
 module.exports = {
-  branches: ['main','Edward_Release'],
+  branches: ['main','helper'],
   repositoryUrl: 'https://github.com/WUonam04/gh-actions-test',
   plugins: [
     '@semantic-release/commit-analyzer',
