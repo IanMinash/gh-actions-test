@@ -6,9 +6,12 @@ on:
       - main
       - develop
       - feature/*
+    tags:              # <-- Trigger on tag push
+      - 'v*'           # Example: v1.0.0, v2.3.1
     paths:
       - "javascript/**"
       - .github/workflows/javascript_ci.yml
+
   pull_request:
     branches:
       - main
@@ -70,3 +73,26 @@ jobs:
         run: echo "$my_var"
         env:
           my_var: ${{ vars.VM_NAME }}
+
+  create_release:
+    needs: build_test
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Zip dist folder
+        run: |
+          cd javascript
+          zip -r dist.zip dist
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: Release ${{ github.ref_name }}
+          files: javascript/dist.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
