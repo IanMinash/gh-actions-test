@@ -9,6 +9,8 @@ on:
     paths:
       - "javascript/**"
       - .github/workflows/javascript_ci.yml
+    tags:
+      - v*
   pull_request:
     branches:
       - main
@@ -22,7 +24,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: ["lts/*", "18", "20"]
+        node-version: ["lts/*", "20"]
 
     defaults:
       run:
@@ -70,3 +72,41 @@ jobs:
         run: echo "$my_var"
         env:
           my_var: ${{ vars.VM_NAME }}
+
+  release:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./javascript
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Cache node modules
+        uses: actions/cache@v4
+        with:
+            path: ~/.npm
+            key: ${{ runner.os }}-node-lts-${{ hashFiles('**/package-lock.json') }}
+            restore-keys: |
+                ${{ runner.os }}-node-
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build TypeScript
+        run: npm run build
+
+      - name: Create zip package
+        run: |
+            cd dist
+            zip -r ../javascript-release.zip .
+
+      - name: Create Release
+        id: create_release
+        uses: softprops/action-gh-release@v2
+        with:
+            files: |
+                javascript/javascript-release.zip
+        env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
