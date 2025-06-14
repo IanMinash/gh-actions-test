@@ -1,5 +1,5 @@
 module.exports = {
-  branches: ['main','helper'],
+  branches: ['main', 'helper'],
   repositoryUrl: 'https://github.com/WUonam04/gh-actions-test',
   plugins: [
     '@semantic-release/commit-analyzer',
@@ -13,7 +13,10 @@ module.exports = {
           'dist/**',
           'python/main.py'
         ],
-        message: 'chore(release): ${nextRelease.version} [skip ci]'
+        message: 'chore(release): ${nextRelease.version} [skip ci]',
+        failComment: false,
+        failTitle: false,
+        labels: []
       }
     ],
     '@semantic-release/git'
