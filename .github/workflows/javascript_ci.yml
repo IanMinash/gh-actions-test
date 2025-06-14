@@ -75,6 +75,7 @@ jobs:
 
   release:
     runs-on: ubuntu-latest
+    if: github.ref_type == 'tag'
     defaults:
       run:
         working-directory: ./javascript
