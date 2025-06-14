@@ -1,0 +1,13 @@
+# 1.0.0 (2025-06-14)
+
+
+### Features
+
+*  first ([afcd785](https://github.com/WUonam04/gh-actions-test/commit/afcd785c7693308f1268b90f3b7c718605325779))
+* first release ([fa17605](https://github.com/WUonam04/gh-actions-test/commit/fa176051236658b0c2fd3ed3e6a2cd031e6372ca))
+* first Release ([073e273](https://github.com/WUonam04/gh-actions-test/commit/073e273baebb74091ac9068a3c52268e1368350c))
+* First Release ([244bdaa](https://github.com/WUonam04/gh-actions-test/commit/244bdaa40d18fec532a894727bb3972266870e00))
+* First Release ([d5761af](https://github.com/WUonam04/gh-actions-test/commit/d5761af2e99667bdb47b24c1426957887ac05ce8))
+* new release ([3ca4ff4](https://github.com/WUonam04/gh-actions-test/commit/3ca4ff4a1fab6d785af856ca30ba5385a6c5bd81))
+* release one ([ef988ee](https://github.com/WUonam04/gh-actions-test/commit/ef988eecaa12b444d28f9d23411a531bd33f6704))
+* Release one ([296b669](https://github.com/WUonam04/gh-actions-test/commit/296b6692a5fd9794c82d8b31982a26e2b8c6f031))
