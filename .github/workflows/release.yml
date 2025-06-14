@@ -3,7 +3,7 @@ name: Release
 on:
   push:      #change this to workflow dispatch. Thus release manually
     branches:
-      - Edward_Release
+      - helper
     
 
 jobs:
