@@ -8,7 +8,7 @@ on:
 
 jobs:
   release: 
-    permissions:
+    permissions: 
         contents: write
         issues: write
         pull-requests: write     ##release can now write
