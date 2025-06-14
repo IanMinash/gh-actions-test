@@ -20,6 +20,6 @@ module.exports = {
     ],
     '@semantic-release/git'
   ],
-  preset: 'conventionalcommits',
+
   tagFormat: 'v${version}'
 };
