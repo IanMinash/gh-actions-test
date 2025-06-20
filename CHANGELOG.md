@@ -1,3 +1,12 @@
+# [1.1.0](https://github.com/WUonam04/gh-actions-test/compare/v1.0.0...v1.1.0) (2025-06-20)
+
+
+### Features
+
+* Created Dockerfile and Docker-Compose for the Python  project ([e389997](https://github.com/WUonam04/gh-actions-test/commit/e389997cfe318d7dbefa726db932a8d112fe613b))
+* Python Docker Deatils ([b479873](https://github.com/WUonam04/gh-actions-test/commit/b479873d6d3b843f22b647a40e4657038169fb02))
+* Python Docker file ([07f7bdc](https://github.com/WUonam04/gh-actions-test/commit/07f7bdce34a7dcead0ed66a6386c405f3386a34c))
+
 # 1.0.0 (2025-06-14)
 
 
