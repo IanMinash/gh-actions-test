@@ -1,0 +1,9 @@
+services:
+  gh-python:
+    image: gh-python:latest
+    container_name: gh-python
+    build: .
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./python:/usr/src/app
