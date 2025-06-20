@@ -37,7 +37,7 @@ jobs:
         if: github.event_name == 'push'
         uses: docker/build-push-action@v5
         with:
-          context: .
+          context: ./python
           push: true
           tags: |
             docker.io/${{ secrets.DOCKERHUB_USERNAME }}/myflaskapp:latest
