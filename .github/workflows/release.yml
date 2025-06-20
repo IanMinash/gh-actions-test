@@ -1,9 +1,10 @@
 name: Release
 
 on:
-  push:      #change this to workflow dispatch. Thus release manually
+  push:      #change this to workflow dispatch. Thus release manually. 
     branches:
       - helper
+  workflow_dispatch: 
     
 
 jobs:
