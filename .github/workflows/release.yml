@@ -1,11 +1,14 @@
 name: Release
 
 on:
-  workflow_dispatch: 
+  push:      #change this to workflow dispatch. Thus release manually
+    branches:
+      - helper
+    
 
 jobs:
   release: 
-    permissions: 
+    permissions:
         contents: write
         issues: write
         pull-requests: write     ##release can now write
