@@ -32,3 +32,54 @@ jobs:
 
       - name: Run tests
         run: PYTHONPATH=. pytest tests/
+
+  release:
+      runs-on: ubuntu-latest
+      if: github.ref_type == 'tag'
+      defaults:
+        run:
+          working-directory: ./python
+
+      steps:
+        - name: Checkout code
+          uses: actions/checkout@v4
+          with:
+              fetch-depth: 0
+
+        - name: Set up Python
+          uses: actions/setup-python@v5
+          with:
+              python-version: "3.13" # Use the same Python version as build_and_test
+
+        - name: Cache pip dependencies
+          uses: actions/cache@v4
+          with:
+              path: ~/.cache/pip
+              key: ${{ runner.os }}-python-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('requirements.txt') }}
+              restore-keys: |
+                  ${{ runner.os }}-python-${{ steps.setup-python.outputs.python-version }}-
+                  ${{ runner.os }}-python-
+
+        - name: Install dependencies into package directory
+          run: |
+              python -m pip install --upgrade pip
+              pip install -r requirements.txt --target ./dist/dependencies
+
+        - name: Copy app to dist directory
+          run: cp main.py ./dist/
+
+        - name: Create zip package
+          run: |
+              cd ./dist
+              zip -r ../python-release.zip .
+
+        - name: Create Release
+          id: create_release
+          uses: softprops/action-gh-release@v2
+          with:
+              files: |
+                  python/python-release.zip
+              draft: false
+              prerelease: false
+          env:
+              GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Secret provided by Github Actions
