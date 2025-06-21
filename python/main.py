@@ -1,6 +1,7 @@
-from flask import Flask, jsonify, request
-import redis
 import os
+
+import redis
+from flask import Flask, jsonify, request
 
 app = Flask(__name__)
 redis_client = redis.StrictRedis(
