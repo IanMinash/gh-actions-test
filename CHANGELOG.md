@@ -1,3 +1,15 @@
+# [2.0.0](https://github.com/WUonam04/gh-actions-test/compare/v1.2.0...v2.0.0) (2025-06-21)
+
+
+### Features
+
+* Update ([d663e33](https://github.com/WUonam04/gh-actions-test/commit/d663e3328e882b89a5e70a42887a223e40f993d7))
+
+
+### BREAKING CHANGES
+
+* UPDATE
+
 # [1.2.0](https://github.com/WUonam04/gh-actions-test/compare/v1.1.0...v1.2.0) (2025-06-20)
 
 
