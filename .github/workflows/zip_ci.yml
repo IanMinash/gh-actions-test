@@ -1,0 +1,25 @@
+name: Zip Python Files
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  zip-python:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Zip Python Files
+        uses: vimtor/action-zip@v1.2
+        with:
+          files: main.py requirements.txt
+          dest: python-build.zip
+
+      - name: Upload Zip as Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: python-zip-file
+          path: python-build.zip

@@ -1,0 +1,25 @@
+name: Zip File
+
+on:
+  release: 
+    types: [published]
+
+jobs: 
+  zip-files:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Zip files
+        uses: vimtor/action-zip@v1.2
+        with:
+          files: dist/*
+          dest: dist-build.zip
+
+      - name: Upload Zip as Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist-zip-file
+          path: dist-build.zip

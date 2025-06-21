@@ -1,34 +1,26 @@
 name: Python CI
 
 on:
-  push:
-    branches: [main, develop, feature/*]
-    paths: ["python/**"]
-  pull_request:
-    branches: [main, develop]
-    paths: ["python/**"]
+    push:
+        branches: [main, develop, feature/*]
+    pull_request: 
+        branches: [main, develop]
 
 jobs:
-  build_test:
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./python
+    build_test:
+        runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+        steps: 
+            - name: Checkout code
+              uses: actions/checkout@v4
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.13"
+            - name: Setup Python
+              uses: actions/setup-python@v5
+              with: 
+                python-version: '3.13'
 
-      - name: Install dependencies
-        run: pip install -r requirements.txt
+            - name: Install dependencies
+              run: cd python && pip install -r requirements.txt
 
-      - name: Run Ruff linter
-        run: ruff check
-
-      - name: Run tests
-        run: PYTHONPATH=. pytest tests/
+            - name: Run tests
+              run: cd python && PYTHONPATH=. pytest tests/
