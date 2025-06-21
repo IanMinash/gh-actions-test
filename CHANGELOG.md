@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/WUonam04/gh-actions-test/compare/v1.1.0...v1.2.0) (2025-06-20)
+
+
+### Features
+
+* Spelling Correction ([95d38c4](https://github.com/WUonam04/gh-actions-test/commit/95d38c4c97bccfc252a62b2fe0a38cef6d211182))
+
 # [1.1.0](https://github.com/WUonam04/gh-actions-test/compare/v1.0.0...v1.1.0) (2025-06-20)
 
 
