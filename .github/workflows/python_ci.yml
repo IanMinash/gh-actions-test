@@ -3,12 +3,19 @@ name: Python CI
 on:
     push:
         branches: [main, develop, feature/*]
+        paths:
+            - ['python/**']
     pull_request: 
         branches: [main, develop]
+        paths:
+            - ['python/**']
 
 jobs:
     build_test:
         runs-on: ubuntu-latest
+        defaults:
+          run:
+            workING-DIRECTORY: ./python
 
         steps: 
             - name: Checkout code
@@ -22,5 +29,8 @@ jobs:
             - name: Install dependencies
               run: cd python && pip install -r requirements.txt
 
+            - name: Run Ruff linter
+              run: ruff check
+              
             - name: Run tests
               run: cd python && PYTHONPATH=. pytest tests/
