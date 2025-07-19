@@ -3,10 +3,10 @@ name: Python CI
 on:
   push:
     branches: [main, develop, feature/*]
-    paths: ["python/**", ".github/workflows/python_ci.yml"]
+    paths: ["python/**", "aks/**", ".github/workflows/python_ci.yml"]
   pull_request:
     branches: [main, develop]
-    paths: ["python/**", ".github/workflows/python_ci.yml"]
+    paths: ["python/**", "aks/**", ".github/workflows/python_ci.yml"]
 
 env:
   REGISTRY: ghcr.io
@@ -40,6 +40,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: build_test
     if: github.event_name == 'push'
+    outputs:
+      image-url: ${{ steps.get-sha.outputs.SHA_TAG }}
 
     steps:
       - name: Checkout code
@@ -63,6 +65,13 @@ jobs:
             type=ref,event=tag
             type=ref,event=pr
             type=sha,prefix=sha-
+
+      - name: Get SHA tag
+        id: get-sha
+        run: |
+            echo '${{ steps.meta.outputs.json }}' > meta.json
+            SHA_TAG=$(jq -r '.tags[] | select(contains("sha-"))' meta.json)
+            echo "SHA_TAG=$SHA_TAG" >> $GITHUB_OUTPUT
 
       - name: Build and push docker image
         uses: docker/build-push-action@v6
