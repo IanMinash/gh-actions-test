@@ -34,7 +34,7 @@ jobs:
                   isAbsolutePath: false
                   content: |
                       az_subscription_id="${{ vars.AZ_SUBSCRIPTION_ID }}"
-                      image_url="${{ needs.build_publish_image.outputs.image-url }}"
+                      image_url=""
                       registry="${{ env.REGISTRY }}"
                       registry_username="${{ github.actor }}"
                       registry_password="${{ secrets.GITHUB_TOKEN }}"
